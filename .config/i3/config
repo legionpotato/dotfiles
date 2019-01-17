@@ -1,0 +1,247 @@
+# Colors
+bar {
+  bindsym button1 nop
+	status_command /usr/bin/i3status-rs ~/.config/i3/config.toml
+	font pango:Noto Sans Mono, fontawesome 5 free 8
+  strip_workspace_numbers yes
+	colors {
+		background		#1d033a
+		statusline		#ffffff
+		separator		#383838
+		focused_workspace	#0000ff #000070 #9553bc
+		active_workspace	#0000ff #000044 #9553bc
+		inactive_workspace	#000000 #77d1ae #9553bc
+		urgent_workspace	#ffffff #201544 #9553bc
+    	}
+}
+hide_edge_borders vertical
+
+# class                 border  backgr. text    indicator child_border
+client.focused          #008866 #008866 #ffffff #CCCCCC   #008866
+client.focused_inactive	#000000 #000000 #888888 #000000   #000000
+client.unfocused		#000000 #000000 #ffffff #000000   #000000
+client.urgent			#ffffff #ffffff #000000 #ffffff   #ffffff
+client.placeholder		#000000 #000000 #ffffff #000000   #000000
+
+client.background       #000000
+
+
+# Please see http://i3wm.org/docs/userguide.html for a complete reference!
+
+set $mod mod1
+#set $starcraft mod1
+
+# Font for window titles. Will also be used by the bar unless a different font
+# is used in the bar {} block below.
+# This font is widely installed, provides lots of unicode glyphs, right-to-left
+# text rendering and scalability on retina/hidpi displays (thanks to pango).
+font pango:Noto Mono 10
+# Before i3 v4.8, we used to recommend this one as the default:
+#font -misc-fixed-medium-r-normal--13-120-75-75-C-70-iso10646-1
+# The font above is very space-efficient, that is, it looks good, sharp and
+# clear in small sizes. However, its unicode glyph coverage is limited, the old
+# X core fonts rendering does not support right-to-left and this being a bitmap
+# font, it doesn’t scale on retina/hidpi displays.
+
+new_window pixel 1
+focus_on_window_activation urgent
+for_window [instance="termite" title="float"] floating enable move right 828px, move down 425px
+for_window [class="floatingpavucontrol"] floating enable move right 828px,move down 425px
+for_window [class="Orage"] floating enable
+for_window [instance="chromium"] border none
+for_window [instance="crx_nckgahadagoaajjgafhacjanaoiihapd"] floating enable
+for_window [class="Firefox"] border none
+for_window [class="Wine"] border none
+for_window [class="mpv"] border none
+for_window [class="stellaris"] border none
+for_window [class="Wire"] floating enable
+for_window [class="Wine"] floating enable border pixel 0
+for_window [class="Google Play Music Desktop Player"] floating enable
+for_window [class="Galculator"] floating enable
+no_focus [class="Skype"]
+for_window [class="qhangups"] floating enable
+no_focus [class="qhangups"]
+for_window [class="Steam"] floating enable
+no_focus [class="Steam"]
+for_window [class="qTox"] floating enable
+for_window [class="Vlc"] border pixel 0
+for_window [class="clock-applet"] floating enable
+for_window [window_role="pop-up"] floating enable
+no_focus [window_role="pop-up"]
+for_window [window_role="bubble"] floating enable
+for_window [window_role="app"] floating enable
+for_window [title="File Transfers"] floating enable
+for_window [class="gpmdp"] floating enable
+for_window [window_role="CallWindow"] floating enable
+
+
+#for_window [class="(?i)firefox"] title_format "→ %title"
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier mod4
+
+# start a terminal
+bindsym mod4+f exec alacritty
+# kill focused window
+bindsym mod4+w kill
+
+# start dmenu (a program launcher)
+# bindsym mod4+period exec dmenu_run
+# There also is the (new) i3-dmenu-desktop which only displays applications
+# shipping a .desktop file. It is a wrapper around dmenu, so you need that
+# installed.
+bindsym mod4+e exec --no-startup-id j4-dmenu-desktop --no-generic --term="termite" --dmenu="dmenu -f -nf '#ffffff' -nb '#000000' -sb '#183f99' -sf '#ffffff' -i -fn 'Noto Mono'"
+
+# change focus
+bindsym $starcraft+j focus left
+bindsym $starcraft+k focus down
+bindsym $starcraft+l focus up
+bindsym $starcraft+semicolon focus right
+
+# move focused window
+bindsym mod4+j move left
+bindsym mod4+k move down
+bindsym mod4+l move up
+bindsym mod4+semicolon move right
+bindsym XF86Launch1 exec numlockx toggle
+# split in horizontal orientation
+bindsym mod4+g split h
+
+# split in vertical orientation
+bindsym mod4+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+#bindsym $mod+o layout stacking
+#bindsym $mod+comma layout tabbed
+#bindsym $mod+period layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle; border toggle
+
+# change focus between tiling / floating windows
+bindsym mod4+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# focus the child container
+#bindsym $mod+d focus child
+
+# switch to workspace
+bindsym $mod+1 workspace 1
+bindsym $mod+2 workspace 2
+bindsym $mod+3 workspace 3
+bindsym $mod+4 workspace 4
+bindsym $mod+5 workspace 5
+bindsym $mod+6 workspace 6
+bindsym $mod+7 workspace 7
+bindsym $mod+8 workspace 8
+bindsym $mod+9 workspace 9
+bindsym $mod+0 workspace 10
+
+
+# move focused container to workspace
+bindsym mod4+1 move container to workspace 1
+bindsym mod4+2 move container to workspace 2
+bindsym mod4+3 move container to workspace 3
+bindsym mod4+4 move container to workspace 4
+bindsym mod4+5 move container to workspace 5
+bindsym mod4+6 move container to workspace 6
+bindsym mod4+7 move container to workspace 7
+bindsym mod4+8 move container to workspace 8
+bindsym mod4+9 move container to workspace 9
+bindsym mod4+0 move container to workspace 10
+
+# change volume or toggle mute
+bindsym XF86AudioRaiseVolume exec amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 20 # decrease screen brightness
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
+# reload the configuration file
+bindsym Mod1+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym Mod1+Shift+e exit
+#Screenshots
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the resize mode
+
+        # Pressing left will shrink the window’s width.
+        # Pressing right will grow the window’s width.
+        # Pressing up will shrink the window’s height.
+        # Pressing down will grow the window’s height.
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym semicolon resize grow width 10 px or 10 ppt
+
+        # same bindings, but for the arrow keys
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+bindsym mod4+r mode "resize"
+
+# Start i3bar to display a workspace bar (plus the system information i3status
+# finds out, if available)
+
+
+exec sh -c 'sleep 1' && xset r rate 195 70
+exec sh -c 'sleep 3' && pkill -RTMIN+1 i3blocks
+exec sh -c 'sleep 4' && pkill -RTMIN+4 i3blocks
+#exec --no-startup-id exec mpd
+exec --no-startup-id exec dunst
+exec --no-startup-id exec wire-desktop --startup
+exec --no-startup-id exec discord --start-minimized
+#exec_always --no-startup-id exec xfce4-power-manager
+exec --no-startup-id xset -dpms
+exec --no-startup-id xset s off
+exec --no-startup-id exec chromium
+exec --no-startup-id exec tilda
+exec --no-startup-id exec xrandr --output DP-2  --mode 2560x1440 --rate 144.00
+
+#exec qtox
+#exec --no-startup-id clipster -d
+
+#Sway
+#output eDP-1 scale 2
+#output eDP-1 bg ~/.i3/wallpaper/background.png stretch
+#input "0:0:Atmel_maXTouch_Touchpad" {
+#    tap enabled
+#    natural_scroll disabled
+#}
+
+#bindsym mod4+l exec swaylock -i ~/.config/i3/wallpaper/background.png && systemctl suspend
+
+#Xorg
+exec --no-startup-id exec feh --bg-center ~/.config/i3/wallpaper/background.png
+exec --no-startup-id exec compton -b --config ~/.config/compton.conf
+exec --no-startup-id xset -b
+exec --no-startup-id clipit -d
+#exec i3lock -i ~/.i3/wallpaper/background.png
+exec --no-startup-id exec redshift
+bindsym mod4+p exec i3lock -i ~/.config/i3/wallpaper/background.png
+

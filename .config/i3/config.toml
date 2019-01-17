@@ -1,0 +1,48 @@
+[theme]
+name = "plain"
+[theme.overrides]
+idle_bg = "#1d033a"
+idle_fg = "#FFFFFF"
+info_bg = "#1d033a"
+info_fg = "#FFFFFF"
+good_bg = "#1d033a"
+good_fg = "#FFFFFF"
+warning_bg = "#1d033a"
+warning_fg = "#FFFFFF"
+critical_bg = "#1d033a"
+critical_fg = "#FFFFFF"
+separator = "20"
+separator_bg = "#1d033a"
+separator_fg = "#1d033a"
+
+[icons]
+name = "awesome"
+
+[[block]]
+block = "net"
+device = "wlp7s0"
+ssid = true
+ip = false
+speed_up = false
+speed_down = false
+graph_up = false
+graph_down = false
+interval = 30
+
+[[block]]
+block = "battery"
+upower = true
+interval = 30
+format = "{percentage}% {time}"
+
+[[block]]
+block = "sound"
+on_click="pavucontrol"
+
+[[block]]
+block = "time"
+on_click="orage"
+interval = 60
+format = "%a∣%d-%b∣%H:%M"
+[icons.overrides]
+time = "  "
